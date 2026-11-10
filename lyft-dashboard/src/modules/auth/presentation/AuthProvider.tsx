@@ -45,35 +45,41 @@ export function AuthProvider({
     let active = true;
     let unsubscribe: (() => void) | undefined;
 
-    try {
-      unsubscribe = service.observe(
-        (user) => {
-          if (active) {
-            setSession({
-              user,
-              status: "ready",
-              error: null,
-            });
-          }
-        },
-        (error) => {
-          if (active) {
-            setSession({
-              user: null,
-              status: "error",
-              error: error.message,
-            });
-          }
-        },
-      );
-    } catch {
-      setSession({
-        user: null,
-        status: "error",
-        error:
-          "No se pudo iniciar la autenticación. Revisa la configuración de Firebase.",
-      });
-    }
+    // Defer initialization so synchronous observer errors do not update state
+    // during the effect itself. Skip subscription if cleanup already ran.
+    queueMicrotask(() => {
+      if (!active) return;
+
+      try {
+        unsubscribe = service.observe(
+          (user) => {
+            if (active) {
+              setSession({
+                user,
+                status: "ready",
+                error: null,
+              });
+            }
+          },
+          (error) => {
+            if (active) {
+              setSession({
+                user: null,
+                status: "error",
+                error: error.message,
+              });
+            }
+          },
+        );
+      } catch {
+        setSession({
+          user: null,
+          status: "error",
+          error:
+            "No se pudo iniciar la autenticación. Revisa la configuración de Firebase.",
+        });
+      }
+    });
 
     return () => {
       active = false;

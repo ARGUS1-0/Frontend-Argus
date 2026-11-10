@@ -4,6 +4,7 @@ import type { Vulnerability } from "../../domain/vulnerability";
 
 import {
   severityUI,
+  sourceUI,
   statusUI,
 } from "../vulnerability-ui";
 
@@ -45,6 +46,8 @@ export function MitigationPanel({
             {severityUI[item.severity].label}
             {" · "}
             {statusUI[item.status].label}
+            {" · "}
+            {sourceUI[item.source]}
             {" · "}
             {item.detectedAt}
           </p>

@@ -3,7 +3,7 @@ import {
   STATUSES,
   type Vulnerability,
   type VulnerabilityFilters,
-} from "@/modules/vulnerabilities/domain/vulnerability";
+} from "../../vulnerabilities/domain/vulnerability";
 
 const normalize = (value: string) =>
   value
@@ -36,14 +36,19 @@ export function buildDashboard(
     stats: {
       total: visible.length,
 
-      pending: visible.filter(
-        (item) => item.status !== "resolved",
+      open: visible.filter(
+        (item) => item.status === "open",
       ).length,
 
-      critical: visible.filter(
+      nessusCritical: visible.filter(
         (item) =>
+          item.source === "nessus" &&
           item.severity === "critical" &&
-          item.status !== "resolved",
+          (item.status === "open" || item.status === "in_progress"),
+      ).length,
+
+      falsePositives: visible.filter(
+        (item) => item.status === "false_positive",
       ).length,
 
       resolved: visible.filter(
