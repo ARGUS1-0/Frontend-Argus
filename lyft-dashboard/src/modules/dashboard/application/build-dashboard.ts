@@ -26,7 +26,7 @@ export function buildDashboard(
       (filters.technology === "all" ||
         item.technology === filters.technology) &&
       normalize(
-        `${item.id} ${item.title} ${item.technology}`,
+        `${item.id} ${item.title} ${item.technology} ${item.affectedAsset ?? ""}`,
       ).includes(query),
   );
 
