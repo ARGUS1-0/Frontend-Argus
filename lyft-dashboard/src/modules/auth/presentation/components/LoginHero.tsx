@@ -1,25 +1,15 @@
-import { ScanLine, ShieldCheck } from "lucide-react";
+import { ArgusLogo, ArgusWordmark } from "@/core/brand/ArgusLogo";
 
 export function LoginHero() {
   return (
-    <aside className="login-hero flex flex-col px-7 py-6 text-white lg:min-h-dvh lg:px-16 lg:py-12">
-      <div className="flex items-center gap-3">
-        <span className="flex size-11 items-center justify-center rounded-xl bg-brand">
-          <ScanLine size={25} aria-hidden="true" />
-        </span>
+    <aside className="login-hero relative flex flex-col overflow-hidden px-7 py-6 text-white lg:min-h-dvh lg:px-16 lg:py-12">
+      <div aria-hidden="true" className="login-grid absolute inset-0" />
 
-        <div>
-          <p className="text-xl font-bold tracking-tight">
-            ARGUS<span className="text-pink-400">.</span>
-          </p>
-
-          <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400">
-            Lyft
-          </p>
-        </div>
+      <div className="relative">
+        <ArgusWordmark size={44} subtitle="Lyft" />
       </div>
 
-      <div className="my-auto hidden py-16 lg:block">
+      <div className="relative my-auto hidden py-16 lg:block">
         <p className="mb-6 text-[11px] uppercase tracking-[0.22em] text-pink-300">
           Inteligencia de amenazas
         </p>
@@ -41,14 +31,16 @@ export function LoginHero() {
           aria-hidden="true"
           className="relative my-12 flex h-56 items-center justify-center"
         >
+          <div className="argus-pulse absolute size-56 rounded-full border border-pink-300/25" />
+          <div className="argus-pulse argus-pulse-delay absolute size-56 rounded-full border border-violet-300/20" />
           <div className="absolute size-56 rounded-full border border-white/10" />
           <div className="absolute size-40 rounded-full border border-pink-300/20" />
+          <div className="argus-sweep absolute size-56 rounded-full" />
 
-          <div className="rounded-3xl border border-white/15 bg-white/5 p-6 shadow-2xl">
-            <ShieldCheck
-              size={52}
-              strokeWidth={1.3}
-              className="text-pink-200"
+          <div className="relative rounded-[28px] bg-white/5 p-3 ring-1 ring-white/15 backdrop-blur-sm">
+            <ArgusLogo
+              size={96}
+              className="drop-shadow-[0_18px_40px_rgba(217,21,120,0.45)]"
             />
           </div>
         </div>
@@ -70,7 +62,7 @@ export function LoginHero() {
         </div>
       </div>
 
-      <p className="hidden text-xs text-slate-400 lg:block">
+      <p className="relative hidden text-xs text-slate-400 lg:block">
         Tecnológico de Monterrey 
       </p>
     </aside>

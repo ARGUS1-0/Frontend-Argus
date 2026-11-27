@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import { Suspense, type ReactNode } from "react";
 
+import { ArgusLogo } from "@/core/brand/ArgusLogo";
 import { AppProviders } from "@/core/providers/AppProviders";
 
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ThreatLens | Reto Lyft",
+  title: "Argus",
   description:
-    "Dashboard académico de gestión de vulnerabilidades.",
+    "Argus: dashboard de gestión de vulnerabilidades del reto Lyft.",
 };
 
 function LoadingApplication() {
@@ -17,9 +18,11 @@ function LoadingApplication() {
       role="status"
       className="flex min-h-dvh items-center justify-center bg-canvas px-6"
     >
-      <div className="text-center">
-        <p className="text-2xl font-bold text-brand">
-          ThreatLens
+      <div className="flex flex-col items-center text-center">
+        <ArgusLogo size={56} className="argus-breathe" />
+
+        <p className="mt-4 text-2xl font-bold tracking-tight text-ink">
+          ARGUS<span className="text-brand">.</span>
         </p>
 
         <p className="mt-3 text-sm text-muted">

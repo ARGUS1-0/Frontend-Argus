@@ -46,9 +46,8 @@ export function DashboardCharts({
   return (
     <div className="grid gap-5 xl:grid-cols-2">
       <section className="dashboard-card min-w-0">
-        <h2 className="font-semibold">
-          Distribución por severidad
-        </h2>
+        <h3 className="font-semibold">Distribución por severidad</h3>
+        <p className="mt-0.5 text-xs text-muted">Hallazgos por severidad asignada por Argus.</p>
 
         <p className="sr-only">
           {severityData
@@ -105,9 +104,8 @@ export function DashboardCharts({
       </section>
 
       <section className="dashboard-card min-w-0">
-        <h2 className="font-semibold">
-          Estado de atención
-        </h2>
+        <h3 className="font-semibold">Estado de atención</h3>
+        <p className="mt-0.5 text-xs text-muted">En qué punto del proceso está cada hallazgo.</p>
 
         <div className="h-48">
           <ResponsiveContainer

@@ -88,7 +88,7 @@ export function LoginForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="space-y-5"
+      className="mt-8 space-y-5"
     >
       <fieldset
         disabled={blocked}

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="argus-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f0479a"/>
+      <stop offset="0.5" stop-color="#d91578"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <radialGradient id="argus-iris" cx="0.4" cy="0.4" r="0.65">
+      <stop offset="0" stop-color="#3b1d63"/>
+      <stop offset="1" stop-color="#141522"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#argus-bg)"/>
+  <g stroke="#fff" stroke-width="3.2" stroke-linecap="round" opacity="0.9">
+    <line x1="32" y1="8" x2="32" y2="13.5"/>
+    <line x1="18.5" y1="11.5" x2="21.5" y2="16.5"/>
+    <line x1="45.5" y1="11.5" x2="42.5" y2="16.5"/>
+  </g>
+  <path d="M7 34 C16 20 48 20 57 34 C48 48 16 48 7 34 Z" fill="#fff"/>
+  <circle cx="32" cy="34" r="11" fill="url(#argus-iris)"/>
+  <circle cx="32" cy="34" r="11" fill="none" stroke="#d91578" stroke-width="2.2"/>
+  <circle cx="32" cy="34" r="4.2" fill="#f0479a"/>
+  <circle cx="35.8" cy="30.2" r="2.4" fill="#fff"/>
+</svg>

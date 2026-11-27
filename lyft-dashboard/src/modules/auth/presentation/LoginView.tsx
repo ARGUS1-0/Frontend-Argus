@@ -1,4 +1,4 @@
-import { ShieldCheck } from "lucide-react";
+import { ArgusLogo } from "@/core/brand/ArgusLogo";
 import { LoginForm } from "./components/LoginForm";
 import { LoginHero } from "./components/LoginHero";
 import Link from "next/link";
@@ -13,13 +13,10 @@ export function LoginView() {
         className="flex flex-col justify-center px-7 py-10 sm:px-12 lg:px-20"
       >
         <div className="mx-auto w-full max-w-[390px]">
-          <div className="mb-6 flex size-12 items-center justify-center rounded-xl border border-line bg-white text-brand">
-            <ShieldCheck
-              size={24}
-              strokeWidth={1.5}
-              aria-hidden="true"
-            />
-          </div>
+          <ArgusLogo
+            size={48}
+            className="mb-6 drop-shadow-[0_8px_20px_rgba(217,21,120,0.25)]"
+          />
 
           <h1
             id="login-title"
@@ -37,12 +34,15 @@ export function LoginView() {
 
           <LoginForm />
 
-          <Link
-  href="/dashboard"
-  className="mt-3 flex min-h-11 items-center justify-center rounded-xl border border-line bg-white text-sm font-medium text-ink hover:bg-slate-50"
->
-  Ver dashboard de demostración
-</Link>
+          <div className="my-5 flex items-center gap-3 text-[11px] uppercase tracking-widest text-muted">
+            <span aria-hidden="true" className="h-px flex-1 bg-line" />
+            o
+            <span aria-hidden="true" className="h-px flex-1 bg-line" />
+          </div>
+
+          <Link href="/dashboard" className="btn btn-secondary h-11 w-full">
+            Ver dashboard de demostración
+          </Link>
 
           <div className="mt-8 border-t border-line pt-6 text-xs leading-6">
             <p className="font-semibold">

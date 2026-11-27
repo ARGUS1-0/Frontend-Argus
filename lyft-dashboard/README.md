@@ -1,5 +1,27 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Conexión con Argus_Backend
+
+Define `NEXT_PUBLIC_API_URL` en `.env.local`, junto a las variables `NEXT_PUBLIC_FIREBASE_*`:
+
+```bash
+NEXT_PUBLIC_API_URL=http://localhost:8081
+```
+
+Con esa variable, el dashboard lee `GET /api/v1/vulnerabilities` y guarda los cambios de estado con
+`PATCH /api/v1/vulnerabilities/{id}/status`. Cada petición manda el ID token de Firebase del usuario. Sin la
+variable, el dashboard usa los datos ficticios de `MockVulnerabilityRepository`. Hay que reiniciar `npm run dev`
+después de cambiarla. El backend debe incluir `http://localhost:3000` en `CORS_ORIGINS`, y su proyecto de
+Firebase debe ser el mismo que `NEXT_PUBLIC_FIREBASE_PROJECT_ID`.
+
+Con el backend conectado aparece la tarjeta **Escaneo de Nessus**. Sube el CSV exportado con
+`POST /api/v1/ingest/nessus` (máximo 50 MB). El backend publica cada hallazgo Medium+ en Kafka y el consumidor los
+guarda en MySQL. La tabla se recarga 3 segundos después. Requiere Kafka levantado
+(`docker compose -f docker-compose.messaging.yml up -d kafka kafka-init kafka-ui` en Argus_Backend).
+
+Desde el panel de mitigación, el SOC puede cambiar el estado de un hallazgo. Para marcar un falso positivo hay que
+escribir una justificación, que queda en la bitácora del backend.
+
 ## Métricas del dashboard
 
 Las cuatro tarjetas superiores se calculan sobre los hallazgos que coinciden con
@@ -18,9 +40,8 @@ dominio alimentan tanto el filtro como la gráfica de atención.
 
 El dominio define los estados y el origen; `buildDashboard` calcula los indicadores
 sin depender de React, Redux o Firebase; `StatCards` solo presenta los resultados.
-El repositorio de demostración se conecta desde `core/composition` y no realiza
-consultas reales a Nessus. La clasificación de falsos positivos se recibe del
-repositorio; esta entrega no agrega un formulario para reportarlos.
+`core/composition` elige el repositorio: el HTTP (`HttpVulnerabilityRepository`) o el de
+demostración.
 
 Validaciones disponibles: `npm test`, `npm run lint`, `npx tsc --noEmit` y `npm run build`.
 Las pruebas usan TypeScript y el ejecutor nativo de Node, sin dependencias adicionales.
